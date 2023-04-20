@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import Loading from "./Loading";
-import "./App.css";
 
-function App() {
+const App = () => {
   const [description, setDescription] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ description });
+    sendDescription();
     setDescription("");
+    setLoading(true);
   };
 
   async function sendDescription() {
@@ -26,7 +26,10 @@ function App() {
         },
       });
       const res = await request.json();
-      console.log(res);
+      if (res.message) {
+        setLoading(false);
+        setResult(res.result);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -62,6 +65,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
 export default App;
