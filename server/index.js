@@ -1,4 +1,5 @@
 import { createRequire } from "module";
+import { ChatGPTAPIBrowser } from "chatgpt";
 const require = createRequire(import.meta.url);
 
 const express = require("express");
@@ -18,4 +19,9 @@ app.get("/api", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+});
+
+app.post("/api", async (req, res) => {
+  const { prompt } = req.body;
+  console.log(prompt);
 });

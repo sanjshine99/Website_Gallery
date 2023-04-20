@@ -1,14 +1,38 @@
 import React, { useState } from "react";
+import Loading from "./Loading";
 import "./App.css";
 
 function App() {
   const [description, setDescription] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({ description });
     setDescription("");
   };
+
+  async function sendDescription() {
+    try {
+      const request = await fetch("http://localhost:4000/api", {
+        method: "POST",
+        body: JSON.stringify({
+          prompt: description,
+        }),
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
+      const res = await request.json();
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  if (loading) return <Loading />;
 
   return (
     <div className="app">
@@ -23,6 +47,19 @@ function App() {
         />
         <button>GENERATE</button>
       </form>
+      <div className="result__container">
+        {result.length > 0 &&
+          result.map((item, index) => (
+            <div key={index}>
+              <img
+                src={`data:image/png;base64,${item.logoImage}`}
+                alt={item.domainName}
+                className="image"
+              />
+              <p>Domain: {item.domainName}</p>
+            </div>
+          ))}
+      </div>
     </div>
   );
 }
