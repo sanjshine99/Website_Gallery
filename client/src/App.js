@@ -1,9 +1,28 @@
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
+  const [description, setDescription] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log({ description });
+    setDescription("");
+  };
+
   return (
-    <div>
-      <p>Hello World!</p>
+    <div className="app">
+      <h1>Website Idea Generator</h1>
+      <form method="POST" onSubmit={handleSubmit}>
+        <label htmlFor="description">Enter the description</label>
+        <textarea
+          name="description"
+          rows={6}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+        <button>GENERATE</button>
+      </form>
     </div>
   );
 }
