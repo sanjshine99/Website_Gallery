@@ -55,12 +55,12 @@ const App = () => {
         {result.length > 0 &&
           result.map((item, index) => (
             <div key={index}>
-              <img
+              {/* <img
                 src={`data:image/png;base64,${item.logoImage}`}
                 alt={item.domainName}
                 className="image"
-              />
-              <p>Domain: {item.domainName}</p>
+              /> */}
+              {/* <p>Domain: {item.domainName}</p> */}
             </div>
           ))}
       </div>
