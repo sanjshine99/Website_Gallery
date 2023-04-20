@@ -1,4 +1,4 @@
-# Website_gallery
+# Website_Gallery
 Building a website gallery with ChatGPT, Stable Diffusion, React and NodeJS
 
 This project is mainly based on blog article posted by Novu - https://novu.co/blog/building-a-website-gallery-with-chatgpt-stable-diffusion-react-and-node-js/
