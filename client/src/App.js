@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Loading from "./Loading";
+import "./App.css";
 
 const App = () => {
   const [description, setDescription] = useState("");
